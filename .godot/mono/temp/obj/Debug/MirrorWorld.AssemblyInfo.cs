@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MirrorWorld")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef1ab3d047948828e7ebd9ba55fcdbd28c222df4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5551a22536373fa7290672ab413bbbc8240d720")]
 [assembly: System.Reflection.AssemblyProductAttribute("MirrorWorld")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MirrorWorld")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

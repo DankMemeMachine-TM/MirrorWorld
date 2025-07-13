@@ -239,6 +239,7 @@ script = ExtResource("2_w31nb")
 wait_time = 1.5
 one_shot = true
 
+[connection signal="new_round_started" from="." to="Enemy" method="_on_quick_draw_new_round_started"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
 [connection signal="button_up" from="Hud/QuitButton" to="." method="_on_quit_button_button_up"]
 [connection signal="timeout" from="Hud/ReadyText/ReadyTimer" to="." method="_on_ready_timer_timeout"]

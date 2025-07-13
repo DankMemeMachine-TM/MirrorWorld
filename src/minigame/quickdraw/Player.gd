@@ -1,3 +1,6 @@
+'''
+	I may try and rework this script; it's rather clunky and almost certainly could be done better.
+'''
 extends Node
 var draw_declared: bool = false;
 var ready_to_input: bool = false;

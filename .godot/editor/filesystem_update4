@@ -4,3 +4,5 @@ res://src/game/player/Player.cs
 res://src/minigame/quickdraw/QuickDraw.gd
 res://src/TestScene.gd
 res://src/minigame/nightflight/NightFlight.tscn
+res://src/minigame/quickdraw/Enemy.gd
+res://src/minigame/quickdraw/Player.gd
