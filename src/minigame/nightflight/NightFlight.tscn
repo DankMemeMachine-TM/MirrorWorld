@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://gay8a3unv788"]
+
+[ext_resource type="Script" uid="uid://d0amdg7ttx0dd" path="res://src/minigame/nightflight/night_flight.gd" id="1_eh2yq"]
+
+[node name="NightFlight" type="Node2D"]
+script = ExtResource("1_eh2yq")
