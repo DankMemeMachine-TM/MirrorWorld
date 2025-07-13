@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd3y85651auxx"]
+
+[ext_resource type="Script" path="res://src/game/player/Sword.gd" id="1_8qrq3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wprvr"]
+radius = 15.0
+height = 76.0
+
+[node name="Sword" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_8qrq3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wprvr")
+debug_color = Color(0.932653, 0.196182, 0.435322, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.67
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,254 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpjw6bu5vmy8r"]
+
+[ext_resource type="Script" uid="uid://dtwsjslxskpdn" path="res://src/minigame/quickdraw/QuickDraw.gd" id="1_6wudv"]
+[ext_resource type="Script" uid="uid://cbl4ataovnbtv" path="res://src/minigame/quickdraw/Enemy.gd" id="2_fb27a"]
+[ext_resource type="Script" uid="uid://cvrlk6e14vwjr" path="res://src/minigame/quickdraw/Player.gd" id="2_w31nb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_26fox"]
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_yuicv"]
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_hhjcf"]
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_2if5b"]
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_kxui0"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_trtt5"]
+font_size = 24
+
+[node name="QuickDraw" type="Node2D"]
+script = ExtResource("1_6wudv")
+
+[node name="DrawTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="QuitButton" type="Button" parent="Hud"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Quit"
+
+[node name="ReadyText" type="Label" parent="Hud"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -87.5
+offset_right = 233.0
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "READY?"
+label_settings = SubResource("LabelSettings_26fox")
+horizontal_alignment = 1
+
+[node name="ReadyTimer" type="Timer" parent="Hud/ReadyText"]
+wait_time = 1.5
+one_shot = true
+
+[node name="DrawText" type="Label" parent="Hud"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -87.5
+offset_right = 233.0
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "DRAW!"
+label_settings = SubResource("LabelSettings_26fox")
+horizontal_alignment = 1
+
+[node name="VictoryText" type="Label" parent="Hud"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -11.5
+offset_right = 38.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU WIN!"
+label_settings = SubResource("LabelSettings_yuicv")
+horizontal_alignment = 1
+
+[node name="DefeatText" type="Label" parent="Hud"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -11.5
+offset_right = 38.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU LOSE..."
+label_settings = SubResource("LabelSettings_yuicv")
+horizontal_alignment = 1
+
+[node name="TooSoonText" type="Label" parent="Hud"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "TOO SOON!"
+label_settings = SubResource("LabelSettings_hhjcf")
+horizontal_alignment = 1
+
+[node name="ReplayText" type="Label" parent="Hud"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -343.5
+offset_top = -162.5
+offset_right = 343.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GO AGAIN?"
+label_settings = SubResource("LabelSettings_2if5b")
+
+[node name="YesButton" type="Button" parent="Hud/ReplayText"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = 38.5
+offset_right = -83.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Yes!"
+
+[node name="NoButton" type="Button" parent="Hud/ReplayText"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = 38.5
+offset_right = 229.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "No"
+
+[node name="CurrentScoreText" type="Label" parent="Hud"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -137.5
+offset_right = 7.5
+offset_bottom = 45.0
+grow_horizontal = 2
+text = "CURRENT"
+label_settings = SubResource("LabelSettings_kxui0")
+horizontal_alignment = 1
+
+[node name="CurrentScoreValue" type="Label" parent="Hud/CurrentScoreText"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -4.0
+offset_right = 14.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "99"
+label_settings = SubResource("LabelSettings_trtt5")
+horizontal_alignment = 2
+
+[node name="HighScoreText" type="Label" parent="Hud"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -9.5
+offset_right = 135.5
+offset_bottom = 45.0
+grow_horizontal = 2
+text = "BEST"
+label_settings = SubResource("LabelSettings_kxui0")
+horizontal_alignment = 1
+
+[node name="HighScoreValue" type="Label" parent="Hud/HighScoreText"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -4.0
+offset_right = 13.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "99"
+label_settings = SubResource("LabelSettings_trtt5")
+horizontal_alignment = 2
+
+[node name="Enemy" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+script = ExtResource("2_fb27a")
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("2_w31nb")
+
+[node name="PostGameTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]
+[connection signal="button_up" from="Hud/QuitButton" to="." method="_on_quit_button_button_up"]
+[connection signal="timeout" from="Hud/ReadyText/ReadyTimer" to="." method="_on_ready_timer_timeout"]
+[connection signal="timeout" from="Hud/ReadyText/ReadyTimer" to="Player" method="_on_ready_timer_timeout"]
+[connection signal="button_up" from="Hud/ReplayText/YesButton" to="." method="_on_yes_button_button_up"]
+[connection signal="button_up" from="Hud/ReplayText/NoButton" to="." method="_on_no_button_button_up"]
+[connection signal="timeout" from="Enemy" to="." method="_on_enemy_timeout"]
+[connection signal="timeout" from="Enemy" to="Player" method="_on_enemy_timeout"]
+[connection signal="player_fired_first" from="Player" to="." method="_on_player_player_fired_first"]
+[connection signal="player_fired_first" from="Player" to="Enemy" method="_on_player_player_fired_first"]
+[connection signal="player_fired_too_soon" from="Player" to="." method="_on_player_player_fired_too_soon"]
+[connection signal="player_fired_too_soon" from="Player" to="Enemy" method="_on_player_player_fired_too_soon"]
+[connection signal="timeout" from="PostGameTimer" to="." method="_on_post_game_timer_timeout"]

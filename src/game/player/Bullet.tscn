@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://btsy86b5d2lgo"]
+
+[ext_resource type="Texture2D" uid="uid://ctw0y25cjcby5" path="res://src/game/player/tempBullet.png" id="1_qwmya"]
+[ext_resource type="Script" path="res://src/game/player/Bullet.gd" id="1_ro6fb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wt0ns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qwmya")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26fo5"]
+size = Vector2(54, 61)
+
+[node name="Bullet" type="Area2D"]
+position = Vector2(11, 0)
+scale = Vector2(0.33, 0.33)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_ro6fb")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wt0ns")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_26fo5")
+
+[node name="Duration" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

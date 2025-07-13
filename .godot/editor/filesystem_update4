@@ -1,0 +1,5 @@
+res://src/game/player/Player.tscn
+res://src/minigame/quickdraw/QuickDraw.tscn
+res://src/game/player/Player.cs
+res://src/minigame/quickdraw/QuickDraw.gd
+res://src/TestScene.gd

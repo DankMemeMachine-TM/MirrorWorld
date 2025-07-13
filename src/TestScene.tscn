@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkohfq3otvjdj"]
+
+[ext_resource type="Script" path="res://src/TestScene.gd" id="1_d6kof"]
+[ext_resource type="PackedScene" uid="uid://durexbuy6dgfr" path="res://src/game/player/Player.tscn" id="2_qspxl"]
+[ext_resource type="PackedScene" uid="uid://bc2ktkq63pw1b" path="res://src/game/hud/LevelHUD.tscn" id="3_l77tp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ptl2"]
+size = Vector2(663.5, 217)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mc27e"]
+
+[node name="TestScene" type="Node"]
+script = ExtResource("1_d6kof")
+
+[node name="Player" parent="." instance=ExtResource("2_qspxl")]
+position = Vector2(266, 219)
+
+[node name="TestFloor" type="Node" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="TestFloor"]
+position = Vector2(13, 297)
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestFloor/Ground"]
+position = Vector2(344.667, 264)
+shape = SubResource("RectangleShape2D_3ptl2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="TestFloor/Ground"]
+position = Vector2(340.667, 266.667)
+scale = Vector2(655.25, 219.75)
+mesh = SubResource("BoxMesh_mc27e")
+
+[node name="LevelHud" parent="." instance=ExtResource("3_l77tp")]

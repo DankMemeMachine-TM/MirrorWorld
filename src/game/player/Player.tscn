@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://durexbuy6dgfr"]
+
+[ext_resource type="Script" uid="uid://bmmyjqn7u8d6t" path="res://src/game/player/Player.gd" id="1_4w5ob"]
+[ext_resource type="Texture2D" uid="uid://b08yxjtdkmutd" path="res://src/game/player/TempPlayer.png" id="1_pf2jd"]
+[ext_resource type="PackedScene" uid="uid://cd3y85651auxx" path="res://src/game/player/Sword.tscn" id="3_svr3h"]
+[ext_resource type="Script" uid="uid://dfiucjejxivus" path="res://src/game/player/SwordHandler.gd" id="4_xu6kc"]
+[ext_resource type="Script" uid="uid://d2l6v72u1nef1" path="res://src/game/player/PlayerData.gd" id="6_bhkai"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xk5wr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pf2jd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o5fbs"]
+radius = 30.0
+height = 128.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pk2se"]
+radius = 30.0
+height = 128.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(-31, -70)
+collision_mask = 12
+script = ExtResource("1_4w5ob")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, 64)
+sprite_frames = SubResource("SpriteFrames_xk5wr")
+animation = &"idle"
+
+[node name="NormalCollision" type="CollisionShape2D" parent="."]
+position = Vector2(30, 64)
+shape = SubResource("CapsuleShape2D_o5fbs")
+
+[node name="DuckCollision" type="CollisionShape2D" parent="."]
+position = Vector2(30, 95)
+scale = Vector2(0.85, 0.5)
+shape = SubResource("CapsuleShape2D_pk2se")
+
+[node name="PlayerData" type="Node" parent="."]
+script = ExtResource("6_bhkai")
+
+[node name="BulletSpawnUp" type="Marker2D" parent="."]
+position = Vector2(30, 45)
+
+[node name="BulletSpawnDown" type="Marker2D" parent="."]
+position = Vector2(30, 95)
+
+[node name="SwordHandler" type="Node" parent="."]
+script = ExtResource("4_xu6kc")
+
+[node name="SwordUpHigh" parent="." instance=ExtResource("3_svr3h")]
+position = Vector2(30, -38)
+rotation = -3.14159
+
+[node name="SwordUpLow" parent="." instance=ExtResource("3_svr3h")]
+position = Vector2(30, 25)
+rotation = -3.14159
+duck_attack = true
+
+[node name="SwordUpRight" parent="." instance=ExtResource("3_svr3h")]
+position = Vector2(98, 45)
+rotation = 1.5708
+
+[node name="SwordUpLeft" parent="." instance=ExtResource("3_svr3h")]
+position = Vector2(-38, 45)
+rotation = 1.57079
+sword_direction = -1
+
+[node name="SwordDown" parent="." instance=ExtResource("3_svr3h")]
+position = Vector2(30, 166)
+rotation = -3.14159
+sword_direction = -1
+
+[node name="SwordDownLeft" parent="." instance=ExtResource("3_svr3h")]
+position = Vector2(-38, 95)
+rotation = 1.57079
+sword_direction = -1
+duck_attack = true
+
+[node name="SwordDownRight" parent="." instance=ExtResource("3_svr3h")]
+position = Vector2(98, 95)
+rotation = 1.5708
+duck_attack = true
+
+[node name="BulletCooldown" type="Timer" parent="."]
+wait_time = 0.44
+one_shot = true
+
+[connection signal="horizontal_attack" from="SwordHandler" to="SwordUpRight" method="_on_sword_handler_horizontal_attack"]
+[connection signal="horizontal_attack" from="SwordHandler" to="SwordUpLeft" method="_on_sword_handler_horizontal_attack"]
+[connection signal="horizontal_attack" from="SwordHandler" to="SwordDownLeft" method="_on_sword_handler_horizontal_attack"]
+[connection signal="horizontal_attack" from="SwordHandler" to="SwordDownRight" method="_on_sword_handler_horizontal_attack"]
+[connection signal="vertical_attack" from="SwordHandler" to="SwordUpHigh" method="_on_sword_handler_vertical_attack"]
+[connection signal="vertical_attack" from="SwordHandler" to="SwordUpLow" method="_on_sword_handler_vertical_attack"]
+[connection signal="vertical_attack" from="SwordHandler" to="SwordDown" method="_on_sword_handler_vertical_attack"]
+[connection signal="attack_finished" from="SwordUpHigh" to="." method="_on_sword_attack_finished"]
+[connection signal="attack_finished" from="SwordUpLow" to="." method="_on_sword_attack_finished"]
+[connection signal="attack_finished" from="SwordUpRight" to="." method="_on_sword_attack_finished"]
+[connection signal="attack_finished" from="SwordUpLeft" to="." method="_on_sword_attack_finished"]
+[connection signal="attack_finished" from="SwordDown" to="." method="_on_sword_attack_finished"]
+[connection signal="attack_finished" from="SwordDownLeft" to="." method="_on_sword_attack_finished"]
+[connection signal="attack_finished" from="SwordDownRight" to="." method="_on_sword_attack_finished"]
+[connection signal="timeout" from="BulletCooldown" to="." method="_on_bullet_cooldown_timeout"]

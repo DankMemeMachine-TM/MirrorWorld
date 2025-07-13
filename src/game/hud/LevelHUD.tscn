@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://bc2ktkq63pw1b"]
+
+[ext_resource type="Script" path="res://src/game/hud/AmmoLabel.gd" id="1_8yeur"]
+[ext_resource type="Script" path="res://src/game/hud/LevelHUD.gd" id="1_wyehs"]
+[ext_resource type="Script" path="res://src/game/hud/QuitButton.gd" id="2_0t4aq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lcocf"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_58q5o"]
+font_size = 24
+
+[node name="LevelHud" type="CanvasLayer"]
+script = ExtResource("1_wyehs")
+
+[node name="AmmoLabel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 130.0
+offset_bottom = 36.0
+script = ExtResource("1_8yeur")
+
+[node name="RemainingBullets" type="Label" parent="AmmoLabel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 34.0
+grow_horizontal = 0
+text = "8"
+label_settings = SubResource("LabelSettings_lcocf")
+horizontal_alignment = 2
+
+[node name="BulletText" type="Label" parent="AmmoLabel"]
+layout_mode = 1
+offset_right = 94.0
+offset_bottom = 34.0
+text = "BULLET:"
+label_settings = SubResource("LabelSettings_58q5o")
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -49.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = " Quit"
+script = ExtResource("2_0t4aq")
+
+[connection signal="button_up" from="QuitButton" to="AmmoLabel" method="_on_quit_button_button_up"]
